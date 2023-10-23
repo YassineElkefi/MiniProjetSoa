@@ -1,15 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-
-@font-face {
-    font-family: 'Tilt Neon';
-    src: url('../../assets/fonts/TiltNeon-Regular.ttf') format('truetype');
-}
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Tilt Neon";
 }
 
 body {
@@ -118,7 +111,7 @@ hr {
     border: 2px solid #261554;
 }
 
-@media screen and (max-width: 1159px) {
+@media (max-width: 1159px) and (min-width: 850px) {
 
     .logo img {
         width: 60px;
@@ -167,5 +160,44 @@ hr {
     .sidebar:hover .logo img{
         width: 170px;
         content: url("../../assets/images/tekup.png");
+    }
+}
+@media (max-width: 849px) {
+    
+    .logo img {
+        width: 60px;
+        content: url("../../assets/images/mini tekup.png");
+    }
+
+    hr {
+        width: 60px;
+        transition: width 0.3s ease-in-out;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 110px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(17px);
+        --webkit-backdrop-filter: blur(17px);
+        border-right: 1px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .links li a {
+        padding: 10px;
+        color: #261554;
+        display: none;
+        font-weight: 500;
+        white-space: nowrap;
+        text-decoration: none;
+    }
+    .sidebar:hover .links li a {
+        display: none;
     }
 }

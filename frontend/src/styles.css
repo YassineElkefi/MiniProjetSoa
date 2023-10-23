@@ -1,4 +1,10 @@
+@font-face {
+    font-family: 'Tilt Neon';
+    src: url('/assets/fonts/TiltNeon-Regular.ttf') format('truetype');
+}
 
 body{
-    background-color: rgb(146, 146, 255);
+    font-family: "Tilt Neon";
+    background-color: #77bdff;
+    overflow: hidden;
 }
