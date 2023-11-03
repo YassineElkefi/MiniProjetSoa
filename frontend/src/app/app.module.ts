@@ -7,6 +7,7 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import { EnseignantComponent } from './enseignant/enseignant.component';
 import { EtudiantComponent } from './etudiant/etudiant.component';
 import { CadreadminComponent } from './cadreadmin/cadreadmin.component';
+import { PopupModalComponent } from './popup-modal/popup-modal.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { CadreadminComponent } from './cadreadmin/cadreadmin.component';
     SideBarComponent,
     EnseignantComponent,
     EtudiantComponent,
-    CadreadminComponent
+    CadreadminComponent,
+    PopupModalComponent
   ],
   imports: [
     BrowserModule,

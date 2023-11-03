@@ -10,7 +10,7 @@
   <body>
 
     <!--image card layout start-->
-    <div class="container">
+    <div id="options_section" class="container_card">
       <!--image row start-->
       <div class="row">
         <!--image card start-->
@@ -19,7 +19,7 @@
           <div class="details">
             <h2>Ajouter <br> un enseignant</h2>
             <div class="more">
-              <a href="#" class="read-more">Click to show form</a>
+              <a href="#CreateSection" class="read-more">Click to show form</a>
             </div>
           </div>
         </div>
@@ -30,19 +30,20 @@
             <div class="details">
               <h2>Modifier le profil  <br> d'un enseignant</h2>
               <div class="more">
-                <a href="#" class="read-more">Click to show form</a>
+                <a href="#ModifySection" class="read-more">Click to show form</a>
               </div>
             </div>
-          </div>
+        </div>
         <!--image card end-->
         <!--image card start-->
         <div class="image">
             <img src="../../assets/images/3.jpg" alt="">
             <div class="details">
               <h2>Supprimer <br> un enseignant</h2>
-              <div class="more">
-                <a href="#" class="read-more">Click to show form</a>
-              </div>
+              <form class="more low_resolution_more" action="" method="">
+                <input class="ID read-more"  type="text" placeholder="ID" pattern="[0-9]*">
+                <input class="BTN" type="submit" value="Delete">
+              </form>
             </div>
           </div>
         <!--image card end-->
@@ -51,6 +52,107 @@
     </div>
     <!--image card layout end-->
 
+    <div id="CreateSection" class="container">
+      <a href="#options_section" id="closePopupButton" class="fas fa-times close-btn"></a>
+      <div class="text">AJOUTER UN ENSEIGNANT</div>
+      <form action="#">
+        <div class="credentials">
+          <div class="data">
+            <label id="nom">Nom</label>
+            <input for="nom" type="text" name="nom" pattern="[A-Z]{1} [A-Za-z]*" required>
+          </div>
+          <div class="data">
+            <label id="prenom">Prénom</label>
+            <input for="prenom" type="text" name="prenom" pattern="[A-Z]{1} [A-Za-z]*" required>
+          </div>
+        </div>
+        <div class="data">
+          <label id="cin">CIN</label>
+          <input for="cin" type="text" name="cin" pattern="[0-9]{8}" required>
+        </div>
+        <div class="data">
+          <label id="tel">Télephone</label>
+          <input for="tel" type="tel" name="tel" pattern="[0-9]{8}" required>
+        </div>
+        <div class="data">
+          <label id="date">Date de naissance</label>
+          <input for="date" type="date" name="date_naiss" required>
+        </div>
+        <div class="data">
+          <label id="adresse">Adresse</label>
+          <input for="adresse" type="text" name="adresse" pattern="[A-Za-z0-9]*" required>
+        </div>
+        <div class="data">
+          <label id="absence">Nombre d'absence</label>
+          <input for="absence" type="number" name="absence" value="0" min="0" required>
+        </div>
+        <div class="occupation">
+          <div class="data">
+            <label id="matiere">Matière</label>
+            <input for="matiere" type="text" name="matiere" pattern="[A-Z]{1} [A-Za-z]*" required>
+          </div>
+          <div class="data">
+            <label id="departement">Département</label>
+            <input for="departement" type="text" name="departement" pattern="[A-Z]{1} [A-Za-z]*" required>
+          </div>
+        </div>
+        <div class="btn">
+          <div class="inner"></div>
+          <button type="submit">login</button>
+       </div>
+      </form>
+   </div>
+
+   <div id="ModifySection" class="container">
+    <a href="#options_section" id="closePopupButton" class="fas fa-times close-btn"></a>
+    <div class="text">Modifier UN ENSEIGNANT</div>
+    <form action="#">
+      <div class="credentials">
+        <div class="data">
+          <label id="nom">Nom</label>
+          <input for="nom" type="text" name="nom" pattern="[A-Z]{1} [A-Za-z]*" required>
+        </div>
+        <div class="data">
+          <label id="prenom">Prénom</label>
+          <input for="prenom" type="text" name="prenom" pattern="[A-Z]{1} [A-Za-z]*" required>
+        </div>
+      </div>
+      <div class="data">
+        <label id="cin">CIN</label>
+        <input for="cin" type="text" name="cin" pattern="[0-9]{8}" required>
+      </div>
+      <div class="data">
+        <label id="tel">Télephone</label>
+        <input for="tel" type="tel" name="tel" pattern="[0-9]{8}" required>
+      </div>
+      <div class="data">
+        <label id="date">Date de naissance</label>
+        <input for="date" type="date" name="date_naiss" required>
+      </div>
+      <div class="data">
+        <label id="adresse">Adresse</label>
+        <input for="adresse" type="text" name="adresse" pattern="[A-Za-z0-9]*" required>
+      </div>
+      <div class="data">
+        <label id="absence">Nombre d'absence</label>
+        <input for="absence" type="number" name="absence" value="0" min="0" required>
+      </div>
+      <div class="occupation">
+        <div class="data">
+          <label id="matiere">Matière</label>
+          <input for="matiere" type="text" name="matiere" pattern="[A-Z]{1} [A-Za-z]*" required>
+        </div>
+        <div class="data">
+          <label id="departement">Département</label>
+          <input for="departement" type="text" name="departement" pattern="[A-Z]{1} [A-Za-z]*" required>
+        </div>
+      </div>
+      <div class="btn">
+        <div class="inner"></div>
+        <button type="submit">login</button>
+     </div>
+    </form>
+ </div>
   </body>
 </html>
       
