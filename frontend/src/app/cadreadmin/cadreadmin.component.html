@@ -1,1 +1,184 @@
-<p>cadreadmin works!</p>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Image Cards With Hover Effect</title>
+    <link rel="stylesheet" href="cadreadmin.component.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+  </head>
+  <body>
+    <!--image card layout start-->
+    <div id="options_section" class="container_page">
+        <!--image row start-->
+        <div class="row">
+          <!--image card start-->
+          <div class="image">
+            <img src="../../assets/images/1.jpg" alt="">
+            <div class="details">
+              <h2>Ajouter <br> un cadre administratif</h2>
+              <div class="more">
+                <a href="/cadre#CreatecadreSection" class="read-more">Click to show form</a>
+              </div>
+            </div>
+          </div>
+          <!--image card end-->
+          <!--image card start-->
+          <div class="image">
+              <img src="../../assets/images/2.jpg" alt="">
+              <div class="details">
+                <h2>Modifier le profil d'un <br> cadre administratif</h2>
+                <form class="more low_resolution_more">
+                  <input class="ID read-more" type="text" placeholder="ID" pattern="[0-9]*" name="id" [(ngModel)]="cadreId" >
+                  <a href="/cadre#ModifiercadreSection"><button class="BTN" (click)="retrieve()" type="button">Modifier</button></a>
+                </form>
+              </div>
+          </div>
+          <!--image card end-->
+          <!--image card start-->
+          <div class="image">
+              <img src="../../assets/images/3.jpg" alt="">
+              <div class="details">
+                <h2>Supprimer <br> un cadre administratif</h2>
+                <form class="more low_resolution_more">
+                  <input class="ID read-more"  type="text" placeholder="ID" name="id2" [(ngModel)]="deleteCadreId" pattern="[0-9]*">
+                  <button class="BTN" type="button" (click)="deleteCadre(deleteCadreId)">Supprimer</button>
+                </form>
+              </div>
+            </div>
+          <!--image card end-->
+          <!-- Filters-->
+
+            <div class="filter">
+                <label for="filter">Filter By :</label>
+                <input type="text" [(ngModel)]="filterValue" placeholder="Filter by ID or Class or State" id="filter">
+            </div>
+            <!-- Display Table-->
+
+      <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Prenom</th>
+                <th>Nom</th>
+                <th>Date de Naissance</th>
+                <th>N° CIN</th>
+                <th>Adresse</th>
+                <th>Num Telephone</th>
+                <th>Absence</th>
+                <th>Occupation</th>
+                <!--<th>Edit/Delete</th>-->
+            </tr>
+        </thead>
+        <tbody>
+                    <tr *ngFor="let cadre of cadres | cadreFilter: filterValue">
+                        <td>{{cadre.id}}</td>
+                        <td>{{cadre.nom}}</td>
+                        <td>{{cadre.prenom}}</td>
+                        <td>{{cadre.date_naiss}}</td>
+                        <td>{{cadre.cin}}</td>
+                        <td>{{cadre.adresse}}</td>
+                        <td>{{cadre.tel}}</td>
+                        <td>{{cadre.nb_absence}}</td>
+                        <td>{{cadre.occupation}}</td>
+                    </tr>
+        </tbody>
+    </table>
+        </div>
+        </div>
+
+        <div id="CreatecadreSection" class="container" *ngIf="createSectionVisible">
+            <a href="/cadre#options_section" id="closePopupButton" class="fas fa-times close-btn"></a>
+            <div class="text">AJOUTER UN CADRE</div>
+            <form (ngSubmit)="onSubmit()" >
+              <div class="credentials">
+                <div class="data">
+                  <label id="nom">Nom</label>
+                  <input for="nom" type="text" name="nom" pattern="[A-Z]{1} [A-Za-z]*" [(ngModel)]="formData.nom" required>
+                </div>
+                <div class="data">
+                  <label id="prenom">Prénom</label>
+                  <input for="prenom" type="text" name="prenom" pattern="[A-Z]{1} [A-Za-z]*" [(ngModel)]="formData.prenom"  required>
+                </div>
+              </div>
+              <div class="data">
+                <label id="cin">CIN</label>
+                <input for="cin" type="text" name="cin" pattern="[0-9]{8}" [(ngModel)]="formData.cin"   required>
+              </div>
+              <div class="data">
+                <label id="tel">Télephone</label>
+                <input for="tel" type="tel" name="tel" pattern="[0-9]{8}" [(ngModel)]="formData.tel"   required>
+              </div>
+              <div class="data">
+                <label id="date">Date de naissance</label>
+                <input for="date" type="date" name="date_naiss" [(ngModel)]="formData.date_naiss" required>
+              </div>
+              <div class="data">
+                <label id="adresse">Adresse</label>
+                <input for="adresse" type="text" name="adresse" pattern="[A-Za-z0-9]*"  [(ngModel)]="formData.adresse"  required>
+              </div>
+              <div class="data">
+                <label id="absence">Nombre d'absence</label>
+                <input for="absence" type="number" name="absence" value="0" min="0" [(ngModel)]="formData.nb_absence" required>
+              </div>
+              <div class="occupation">
+                <div class="data">
+                  <label id="matiere">Occupation</label>
+                  <input for="matiere" type="text" name="matiere" pattern="[A-Z]{1} [A-Za-z]*" [(ngModel)]="formData.occupation"  required>
+                </div>
+              </div>
+              <div class="btn">
+                <div class="inner"></div>
+                <button type="submit">Ajouter</button>
+                <button type="reset">Réinitialiser</button>
+             </div>
+            </form>
+         </div>
+         <div id="ModifiercadreSection" class="container" *ngIf="showModifierSection">
+            <a href="/cadre#options_section" id="closePopupButton" class="fas fa-times close-btn"></a>
+            <div class="text">MODIFIER UN CADRE</div>
+            <form action="#" (ngSubmit)="onSubmit2()">
+              <div class="credentials">
+                <div class="data">
+                  <label id="nom">Nom</label>
+                  <input for="nom" type="text" name="nom" pattern="[A-Z]{1} [A-Za-z]*" [(ngModel)]="updatedCadre.nom" required>
+                </div>
+                <div class="data">
+                  <label id="prenom">Prénom</label>
+                  <input for="prenom" type="text" name="prenom" pattern="[A-Z]{1} [A-Za-z]*" [(ngModel)]="updatedCadre.prenom" required>
+                </div>
+              </div>
+              <div class="data">
+                <label id="cin">CIN</label>
+                <input for="cin" type="text" name="cin" pattern="[0-9]{8}" [(ngModel)]="updatedCadre.cin" required>
+              </div>
+              <div class="data">
+                <label id="tel">Télephone</label>
+                <input for="tel" type="tel" name="tel" pattern="[0-9]{8}" [(ngModel)]="updatedCadre.tel" required>
+              </div>
+              <div class="data">
+                <label id="date">Date de naissance</label>
+                <input for="date" type="date" name="date_naiss" [(ngModel)]="updatedCadre.date_naiss" required>
+              </div>
+              <div class="data">
+                <label id="adresse">Adresse</label>
+                <input for="adresse" type="text" name="adresse" pattern="[A-Za-z0-9]*" [(ngModel)]="updatedCadre.adresse" required>
+              </div>
+              <div class="data">
+                <label id="absence">Nombre d'absence</label>
+                <input for="absence" type="number" name="absence" value="0" min="0" [(ngModel)]="updatedCadre.nb_absence" required>
+              </div>
+              <div class="occupation">
+                <div class="data">
+                  <label id="matiere">Occupation</label>
+                  <input for="matiere" type="text" name="matiere" pattern="[A-Z]{1} [A-Za-z]*" [(ngModel)]="updatedCadre.occupation" required>
+                </div>
+              </div>
+              <div class="btn">
+                <div class="inner"></div>
+                <button type="submit">Ajouter</button>
+                <button type="reset">Réinitialiser</button>
+             </div>
+            </form>
+         </div>
+        </body>

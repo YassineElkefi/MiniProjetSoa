@@ -8,8 +8,15 @@
   </head>
   <body>
     <div class="grid-container">
-      <div class="grid-item"><app-side-bar></app-side-bar></div>
-      <div class="grid-item"><app-enseignant></app-enseignant></div>
+        <router-outlet></router-outlet>
+        <app-side-bar></app-side-bar>
     </div>
+
+    <!--<div class="grid-container">
+      <div class="grid-item"><app-side-bar></app-side-bar></div>
+      <div class="grid-item"><app-etudiant></app-etudiant></div>
+      <div class="grid-item"><app-cadreadmin></app-cadreadmin></div>
+      <div class="grid-item"><app-enseignant></app-enseignant></div>
+    </div>-->
   </body>
 </html>

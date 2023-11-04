@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
+import { EtudiantFilterPipe } from './etudiant-filter.pipe';
+import { CadreFilterPipe } from './cadre-filter.pipe';
+import { EnseignantFilterPipe } from './enseignant-filter-pipe';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
@@ -16,11 +21,16 @@ import { PopupModalComponent } from './popup-modal/popup-modal.component';
     EnseignantComponent,
     EtudiantComponent,
     CadreadminComponent,
-    PopupModalComponent
+    PopupModalComponent,
+    EnseignantFilterPipe,
+    CadreFilterPipe,
+    EtudiantFilterPipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

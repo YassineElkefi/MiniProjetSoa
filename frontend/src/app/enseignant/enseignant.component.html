@@ -19,7 +19,7 @@
           <div class="details">
             <h2>Ajouter <br> un enseignant</h2>
             <div class="more">
-              <a href="#CreateSection" class="read-more">Click to show form</a>
+              <a href="/enseignant#CreateSection" class="read-more">Click to show form</a>
             </div>
           </div>
         </div>
@@ -29,9 +29,9 @@
             <img src="../../assets/images/2.jpg" alt="">
             <div class="details">
               <h2>Modifier le profil  <br> d'un enseignant</h2>
-              <form class="more low_resolution_more" action="" method="">
-                <input class="ID read-more"  type="text" placeholder="ID" pattern="[0-9]*">
-                <a href="#ModifierSection" class="read-more"><button class="BTN" type="button">Modifier</button></a>
+              <form class="more low_resolution_more">
+                <input class="ID read-more" type="text" placeholder="ID" pattern="[0-9]*" name="id" [(ngModel)]="enseignantId">
+                <a href="/enseignant#ModifierSection"><button class="BTN" type="button" (click)="retrieve()" >Modifier</button></a>
               </form>
             </div>
         </div>
@@ -41,60 +41,104 @@
             <img src="../../assets/images/3.jpg" alt="">
             <div class="details">
               <h2>Supprimer <br> un enseignant</h2>
-              <form class="more low_resolution_more" action="" method="">
-                <input class="ID read-more"  type="text" placeholder="ID" pattern="[0-9]*">
-                <button class="BTN" type="submit">Supprimer</button>
+              <form class="more low_resolution_more">
+                <input class="ID read-more"  type="text" placeholder="ID" name="id2" [(ngModel)]="deleteId" pattern="[0-9]*">
+                <button class="BTN" type="button" (click)="deleteEnseignant(deleteId)">Supprimer</button>
               </form>
             </div>
           </div>
         <!--image card end-->
       </div>
       <!--image row end-->
+
+      <!-- Filters-->
+
+      <div class="filter">
+        <label for="filter">Filter By :</label>
+        <input type="text" [(ngModel)]="filterValue" placeholder="Filter by ID or Class or State" id="filter">
+      </div>
+      <!-- Display Table-->
+
+      <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Prenom</th>
+                <th>Nom</th>
+                <th>Date de Naissance</th>
+                <th>N° CIN</th>
+                <th>Adresse</th>
+                <th>Num Telephone</th>
+                <th>Absence</th>
+                <th>Matiere</th>
+                <th>Departement</th>
+                <!--<th>Edit/Delete</th>-->
+            </tr>
+        </thead>
+        <tbody>
+                    <tr *ngFor="let enseignant of enseignants | enseignantFilter: filterValue">
+                        <td>{{enseignant.id}}</td>
+                        <td>{{enseignant.nom}}</td>
+                        <td>{{enseignant.prenom}}</td>
+                        <td>{{enseignant.date_naiss}}</td>
+                        <td>{{enseignant.cin}}</td>
+                        <td>{{enseignant.adresse}}</td>
+                        <td>{{enseignant.tel}}</td>
+                        <td>{{enseignant.nb_absence}}</td>
+                        <td>{{enseignant.matiere}}</td>
+                        <td>{{enseignant.departement}}</td>
+                        <!--<td>
+                            <button (click)="editenseignant(enseignant.id)">Edit</button>
+                            <button (click)="deleteenseignant(enseignant.id)" routerLink="/">Delete</button>
+                        </td>-->
+                    </tr>
+        </tbody>
+    </table>
     </div>
     <!--image card layout end-->
 
-    <div id="CreateSection" class="container">
-      <a href="#options_section" id="closePopupButton" class="fas fa-times close-btn"></a>
+    <div id="CreateSection" class="container" *ngIf="createSectionVisible">
+      <a href="/enseignant#options_section" id="closePopupButton" class="fas fa-times close-btn"></a>
       <div class="text">AJOUTER UN ENSEIGNANT</div>
-      <form action="#">
+      <form (ngSubmit)="onSubmit()">
         <div class="credentials">
           <div class="data">
             <label id="nom">Nom</label>
-            <input for="nom" type="text" name="nom" pattern="[A-Z]{1} [A-Za-z]*" required>
+            <input for="nom" type="text" name="nom" pattern="[A-Z]{1} [A-Za-z]*" [(ngModel)]="formData.nom" required>
           </div>
           <div class="data">
             <label id="prenom">Prénom</label>
-            <input for="prenom" type="text" name="prenom" pattern="[A-Z]{1} [A-Za-z]*" required>
+            <input for="prenom" type="text" name="prenom" pattern="[A-Z]{1} [A-Za-z]*" [(ngModel)]="formData.prenom" required>
           </div>
         </div>
         <div class="data">
           <label id="cin">CIN</label>
-          <input for="cin" type="text" name="cin" pattern="[0-9]{8}" required>
+          <input for="cin" type="text" name="cin" pattern="[0-9]{8}" [(ngModel)]="formData.cin" required>
         </div>
         <div class="data">
           <label id="tel">Télephone</label>
-          <input for="tel" type="tel" name="tel" pattern="[0-9]{8}" required>
+          <input for="tel" type="tel" name="tel" pattern="[0-9]{8}" [(ngModel)]="formData.tel" required>
         </div>
         <div class="data">
           <label id="date">Date de naissance</label>
-          <input for="date" type="date" name="date_naiss" required>
+          <input for="date" type="date" name="date_naiss" [(ngModel)]="formData.date_naiss" required>
         </div>
         <div class="data">
           <label id="adresse">Adresse</label>
-          <input for="adresse" type="text" name="adresse" pattern="[A-Za-z0-9]*" required>
+          <input for="adresse" type="text" name="adresse" pattern="[A-Za-z0-9]*" [(ngModel)]="formData.adresse" required>
         </div>
         <div class="data">
           <label id="absence">Nombre d'absence</label>
-          <input for="absence" type="number" name="absence" value="0" min="0" required>
+          <input for="absence" type="number" name="absence" value="0" min="0" [(ngModel)]="formData.nb_absence" required>
         </div>
         <div class="occupation">
           <div class="data">
             <label id="matiere">Matière</label>
-            <input for="matiere" type="text" name="matiere" pattern="[A-Z]{1} [A-Za-z]*" required>
+            <input for="matiere" type="text" name="matiere" pattern="[A-Z]{1} [A-Za-z]*" [(ngModel)]="formData.matiere" required>
           </div>
           <div class="data">
             <label id="departement">Département</label>
-            <input for="departement" type="text" name="departement" pattern="[A-Z]{1} [A-Za-z]*" required>
+            <input for="departement" type="text" name="departement" pattern="[A-Z]{1} [A-Za-z]*" [(ngModel)]="formData.departement"required>
           </div>
         </div>
         <div class="btn">
@@ -105,48 +149,48 @@
       </form>
    </div>
 
-   <div id="ModifierSection" class="container">
-    <a href="#options_section" id="closePopupButton" class="fas fa-times close-btn"></a>
+   <div id="ModifierSection" class="container" *ngIf="showModifierSection">
+    <a href="/enseignant#options_section" id="closePopupButton" class="fas fa-times close-btn"></a>
     <div class="text">MODIFIER UN ENSEIGNANT</div>
-    <form action="#">
+    <form action="#" (ngSubmit)="onSubmit2()">
       <div class="credentials">
         <div class="data">
           <label id="nom">Nom</label>
-          <input for="nom" type="text" name="nom" pattern="[A-Z]{1} [A-Za-z]*" required>
+          <input for="nom" type="text" name="nom" pattern="[A-Z]{1} [A-Za-z]*" [(ngModel)]="updatedEnseignant.nom" required>
         </div>
         <div class="data">
           <label id="prenom">Prénom</label>
-          <input for="prenom" type="text" name="prenom" pattern="[A-Z]{1} [A-Za-z]*" required>
+          <input for="prenom" type="text" name="prenom" pattern="[A-Z]{1} [A-Za-z]*" [(ngModel)]="updatedEnseignant.prenom" required>
         </div>
       </div>
       <div class="data">
         <label id="cin">CIN</label>
-        <input for="cin" type="text" name="cin" pattern="[0-9]{8}" required>
+        <input for="cin" type="text" name="cin" pattern="[0-9]{8}" [(ngModel)]="updatedEnseignant.cin" required>
       </div>
       <div class="data">
         <label id="tel">Télephone</label>
-        <input for="tel" type="tel" name="tel" pattern="[0-9]{8}" required>
+        <input for="tel" type="tel" name="tel" pattern="[0-9]{8}" [(ngModel)]="updatedEnseignant.tel" required>
       </div>
       <div class="data">
         <label id="date">Date de naissance</label>
-        <input for="date" type="date" name="date_naiss" required>
+        <input for="date" type="date" name="date_naiss" [(ngModel)]="updatedEnseignant.date_naiss" required>
       </div>
       <div class="data">
         <label id="adresse">Adresse</label>
-        <input for="adresse" type="text" name="adresse" pattern="[A-Za-z0-9]*" required>
+        <input for="adresse" type="text" name="adresse" pattern="[A-Za-z0-9]*" [(ngModel)]="updatedEnseignant.adresse" required>
       </div>
       <div class="data">
         <label id="absence">Nombre d'absence</label>
-        <input for="absence" type="number" name="absence" value="0" min="0" required>
+        <input for="absence" type="number" name="absence" value="0" min="0" [(ngModel)]="updatedEnseignant.nb_absence" required>
       </div>
       <div class="occupation">
         <div class="data">
           <label id="matiere">Matière</label>
-          <input for="matiere" type="text" name="matiere" pattern="[A-Z]{1} [A-Za-z]*" required>
+          <input for="matiere" type="text" name="matiere" pattern="[A-Z]{1} [A-Za-z]*" [(ngModel)]="updatedEnseignant.matiere" required>
         </div>
         <div class="data">
           <label id="departement">Département</label>
-          <input for="departement" type="text" name="departement" pattern="[A-Z]{1} [A-Za-z]*" required>
+          <input for="departement" type="text" name="departement" pattern="[A-Z]{1} [A-Za-z]*" [(ngModel)]="updatedEnseignant.departement" required>
         </div>
       </div>
       <div class="btn">

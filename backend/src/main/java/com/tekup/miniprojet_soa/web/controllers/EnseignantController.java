@@ -1,8 +1,10 @@
 package com.tekup.miniprojet_soa.web.controllers;
 
 import com.tekup.miniprojet_soa.web.models.Enseignant;
+import com.tekup.miniprojet_soa.web.models.Etudiant;
 import com.tekup.miniprojet_soa.web.repositories.EnseignantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -48,13 +50,13 @@ public class EnseignantController {
     }
 
     @PostMapping("/save")
-    public String saveEnseignant(@RequestBody Enseignant enseignant){
-        enseigantRepo.save(enseignant);
-        return "Successful";
+    public ResponseEntity<Enseignant> saveEnseignant(@RequestBody Enseignant enseignant){
+        Enseignant createdEnseignat = enseigantRepo.save(enseignant);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdEnseignat);
     }
 
     @PutMapping("/update/{id}")
-    public String updateEnseignant(@PathVariable long id, @RequestBody Enseignant enseignant){
+    public ResponseEntity<Enseignant> updateEnseignant(@PathVariable long id, @RequestBody Enseignant enseignant){
         Optional<Enseignant> existingens = enseigantRepo.findById(id);
 
         if(existingens.isPresent()){
@@ -87,17 +89,20 @@ public class EnseignantController {
                 ens.setDepartement(enseignant.getDepartement());
             }
             enseigantRepo.save(ens);
+            return ResponseEntity.ok(ens);
+        }else{
+            return (ResponseEntity<Enseignant>) ResponseEntity.status(HttpStatus.NOT_FOUND);
         }
-        return "Successful";
+
 
     }
     @Autowired
     private JdbcTemplate jdbcTemplate;
     @DeleteMapping("/delete/{id}")
-    public String deleteEnseignant(@PathVariable long id){
+    public ResponseEntity<String> deleteEnseignant(@PathVariable long id){
         Enseignant deletedEnseignant = enseigantRepo.findById(id).get();
         enseigantRepo.delete(deletedEnseignant);
         jdbcTemplate.execute("ALTER TABLE enseignant AUTO_INCREMENT=1;");
-        return "Successful";
+        return ResponseEntity.ok("Enseignant with ID " + id + " has been deleted.");
     }
 }
