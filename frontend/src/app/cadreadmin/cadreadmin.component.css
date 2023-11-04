@@ -19,6 +19,21 @@ body{
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
+    height: 350px;
+}
+
+.column1{
+	height: 100%;
+	display: flex;
+	justify-content:left;
+	flex-wrap: wrap;
+}
+
+.column2{
+	height: 100%;
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
 }
 
 .image{
@@ -331,6 +346,7 @@ input{
     height: 45px;
     width: 100%;
     margin: 40px 0;
+    color: #261554;
   }
   form .data label, form .credentials .data label{
     font-size: 18px;
@@ -341,9 +357,11 @@ input{
     padding-left: 10px;
     font-size: 17px;
     border: 1px solid silver;
+    color: #261554;
   }
+
   form .credentials .data input:focus, form .data input:focus{
-    border-color: #3498db;
+    border-color: #261554;
     border-bottom-width: 2px;
   }
 
@@ -433,7 +451,6 @@ input{
 table{
     border-collapse: collapse;
     margin: auto;
-    margin-left: 20%;
     font-size: 1.2em;
     font-family: sans-serif;
     min-width: 400px;
@@ -453,9 +470,9 @@ table{
     }
   }
 
-thead tr {
-    background-color: #FFF3DA;
-    color: #000000;
+  thead tr{
+    background-color: #fff;
+    color: #261554;
     text-align: left;
 }
 
@@ -465,13 +482,14 @@ th, td {
 
 tbody tr {
     border-bottom: 1px solid #ffffff;
+    color: #ffffff;
 }
 
 tbody tr:nth-of-type(even) {
-    background-color: #DFCCFB;
+    background-color: #261554;
 }
 tbody tr:nth-of-type(odd) {
-    background-color: #BEADFA;
+    background-color: #261554;
 }
 
 
@@ -485,23 +503,21 @@ tbody tr.active-row {
 }
 
 .filter input[type=text] {
-    display: grid;
-    width: 50%;
-    padding: 12px 20px;
-    margin: 8px 0;
+    width: 55%;
+    padding: 10px 20px;
     box-sizing: border-box;
     border-radius: 10px;
     border: 0;
   }
 
   .filter label{
-   font: 1.6em sans-serif;
-   font-style: italic;
-   font-family: cursive;
+   font-size: 1.3em
   }
   .filter{
-    margin-bottom: 80px;
-    margin-left: 20%;
+    margin-bottom: 20px;
+    margin-left: 5%;
+    width: 400px;
+
   }
   .form-group{
     margin-top: 60px;

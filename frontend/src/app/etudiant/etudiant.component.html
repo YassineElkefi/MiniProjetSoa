@@ -11,6 +11,7 @@
 
     <div id="options_section" class="container_page">
         <!--image row start-->
+        <div class="column1">
         <div class="row">
           <!--image card start-->
           <div class="image">
@@ -18,7 +19,7 @@
             <div class="details">
               <h2>Ajouter <br> un etudiant</h2>
               <div class="more">
-                <a href="/etudiant#CreateSection" class="read-more">Click to show form</a>
+                <a href="/etudiant#CreateSection" class="read-more">Afficher le formulaire</a>
               </div>
             </div>
           </div>
@@ -29,7 +30,7 @@
               <div class="details">
                 <h2>Modifier le profil  <br> d'un etudiant</h2>
                 <form class="more low_resolution_more">
-                  <input class="ID read-more" type="text" placeholder="ID" pattern="[0-9]*" name="id" [(ngModel)]="etudiantId">
+                  <input class="ID read-more" type="number" placeholder="ID"  min="0"  pattern="[0-9]*" name="id" [(ngModel)]="etudiantId">
                   <a href="/etudiant#ModifierSection"><button class="BTN" type="button" (click)="retrieve()" >Modifier</button></a>
                 </form>
               </div>
@@ -41,7 +42,7 @@
               <div class="details">
                 <h2>Supprimer <br> un etudiant</h2>
                 <form class="more low_resolution_more">
-                  <input class="ID read-more"  type="text" placeholder="ID" name="id2" [(ngModel)]="deleteEtudiantId" pattern="[0-9]*">
+                  <input class="ID read-more"  type="number" placeholder="ID"  min="0"  name="id2" [(ngModel)]="deleteEtudiantId" pattern="[0-9]*">
                   <button class="BTN" type="button" (click)="deleteEnseignant(deleteEtudiantId)">Supprimer</button>
                 </form>
               </div>
@@ -49,12 +50,14 @@
           <!--image card end-->
         </div>
         <!--image row end-->
-  
+  </div>
+
+<div class="column2">
         <!-- Filters-->
   
         <div class="filter">
-          <label for="filter">Filter By :</label>
-          <input type="text" [(ngModel)]="filterValue" placeholder="Filter by ID or Class or State" id="filter">
+          <label for="filter">Filtrer par </label>
+          <input type="text" [(ngModel)]="filterValue" placeholder="Filtrer par ID ou Classe ou Réussi" id="filter">
         </div>
         <!-- Display Table-->
   
@@ -94,6 +97,7 @@
           </tbody>
       </table>
       </div>
+      </div>
       <!--image card layout end-->
   
       <div id="CreateSection" class="container" *ngIf="createSectionVisible">
@@ -130,17 +134,21 @@
             <label id="absence">Nombre d'absence</label>
             <input for="absence" type="number" name="absence" value="0" min="0" [(ngModel)]="formData.nb_absence" required>
           </div>
-          <div class="occupation">
+          <div class="classe">
             <div class="data">
               <label id="matiere">Classe</label>
               <input for="matiere" type="text" name="matiere" pattern="[A-Z]{1} [A-Za-z]*" [(ngModel)]="formData.classe" required>
             </div>
             <div class="form-group">
-              <label>Réussi :</label>
-              <input type="radio" id="yes" name="estReussi" [(ngModel)]="updatedEtudiant.estReussi" [value]="true" required>
-              <label for="yes">Yes</label>
-              <input type="radio" id="no" name="estReussi" [(ngModel)]="updatedEtudiant.estReussi" [value]="false" required>
-              <label for="no">No</label>
+              <label>Réussi</label>
+              <div class="radio">
+                <input type="radio" id="yes" name="estReussi" [(ngModel)]="updatedEtudiant.estReussi" [value]="true" required>
+                <label for="yes">Yes</label>
+              </div>
+              <div class="radio">
+                <input type="radio" id="no" name="estReussi" [(ngModel)]="updatedEtudiant.estReussi" [value]="false" required>
+                <label for="no">No</label>
+              </div>
             </div>
           </div>
           <div class="btn">
@@ -185,22 +193,26 @@
           <label id="absence">Nombre d'absence</label>
           <input for="absence" type="number" name="absence" value="0" min="0" [(ngModel)]="updatedEtudiant.nb_absence" required>
         </div>
-        <div class="occupation">
+        <div class="classe">
           <div class="data">
             <label id="matiere">Classe</label>
             <input for="matiere" type="text" name="matiere" pattern="[A-Z]{1} [A-Za-z]*" [(ngModel)]="updatedEtudiant.classe" required>
           </div>
           <div class="form-group">
             <label id="departement">Reussi</label>
-            <input type="radio" id="yes" name="estReussi" [(ngModel)]="updatedEtudiant.estReussi" [value]="true" required>
-            <label for="yes">Yes</label>
-            <input type="radio" id="no" name="estReussi" [(ngModel)]="updatedEtudiant.estReussi" [value]="false" required>
-            <label for="no">No</label>
+            <div class="radio">
+              <input type="radio" id="yes" name="estReussi" [(ngModel)]="updatedEtudiant.estReussi" [value]="true" required>
+              <label for="yes">Yes</label>
+            </div>
+            <div class="radio">
+              <input type="radio" id="no" name="estReussi" [(ngModel)]="updatedEtudiant.estReussi" [value]="false" required>
+              <label for="no">No</label>
+            </div>
           </div>
         </div>
         <div class="btn">
           <div class="inner"></div>
-          <button type="submit">Ajouter</button>
+          <button type="submit">Modifier</button>
           <button type="reset">Réinitialiser</button>
        </div>
       </form>

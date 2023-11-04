@@ -1,7 +1,6 @@
 package com.tekup.miniprojet_soa.web.controllers;
 
 import com.tekup.miniprojet_soa.web.models.Enseignant;
-import com.tekup.miniprojet_soa.web.models.Etudiant;
 import com.tekup.miniprojet_soa.web.repositories.EnseignantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

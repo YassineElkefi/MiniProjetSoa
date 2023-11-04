@@ -111,6 +111,11 @@ hr {
     border: 2px solid #261554;
 }
 
+.active {
+    background-color: #ffffff; 
+    border-radius: 5px;
+  }
+
 @media (max-width: 1159px) and (min-width: 850px) {
 
     .logo img {

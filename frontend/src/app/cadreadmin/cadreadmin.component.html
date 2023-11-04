@@ -11,85 +11,87 @@
     <!--image card layout start-->
     <div id="options_section" class="container_page">
         <!--image row start-->
-        <div class="row">
-          <!--image card start-->
-          <div class="image">
-            <img src="../../assets/images/1.jpg" alt="">
-            <div class="details">
-              <h2>Ajouter <br> un cadre administratif</h2>
-              <div class="more">
-                <a href="/cadre#CreatecadreSection" class="read-more">Click to show form</a>
-              </div>
-            </div>
-          </div>
-          <!--image card end-->
-          <!--image card start-->
-          <div class="image">
-              <img src="../../assets/images/2.jpg" alt="">
+        <div class="column1">
+          <div class="row">
+            <!--image card start-->
+            <div class="image">
+              <img src="../../assets/images/1.jpg" alt="">
               <div class="details">
-                <h2>Modifier le profil d'un <br> cadre administratif</h2>
-                <form class="more low_resolution_more">
-                  <input class="ID read-more" type="text" placeholder="ID" pattern="[0-9]*" name="id" [(ngModel)]="cadreId" >
-                  <a href="/cadre#ModifiercadreSection"><button class="BTN" (click)="retrieve()" type="button">Modifier</button></a>
-                </form>
+                <h2>Ajouter <br> un administrateur</h2>
+                <div class="more">
+                  <a href="/cadre#CreatecadreSection" class="read-more">Afficher le formulaire</a>
+                </div>
               </div>
+            </div>
+            <!--image card end-->
+            <!--image card start-->
+            <div class="image">
+                <img src="../../assets/images/2.jpg" alt="">
+                <div class="details">
+                  <h2>Modifier le profil d'un <br> administrateur</h2>
+                  <form class="more low_resolution_more">
+                    <input class="ID read-more" type="number" placeholder="ID" min="0" name="id" [(ngModel)]="cadreId" >
+                    <a href="/cadre#ModifiercadreSection"><button class="BTN" (click)="retrieve()" type="button">Modifier</button></a>
+                  </form>
+                </div>
+            </div>
+            <!--image card end-->
+            <!--image card start-->
+            <div class="image">
+                <img src="../../assets/images/3.jpg" alt="">
+                <div class="details">
+                  <h2>Supprimer <br> un administrateur</h2>
+                  <form class="more low_resolution_more">
+                    <input class="ID read-more"  type="number" placeholder="ID" min="0" name="id2" [(ngModel)]="deleteCadreId">
+                    <button class="BTN" type="button" (click)="deleteCadre(deleteCadreId)">Supprimer</button>
+                  </form>
+                </div>
+              </div>
+            <!--image card end-->
+            <!-- Filters-->
           </div>
-          <!--image card end-->
-          <!--image card start-->
-          <div class="image">
-              <img src="../../assets/images/3.jpg" alt="">
-              <div class="details">
-                <h2>Supprimer <br> un cadre administratif</h2>
-                <form class="more low_resolution_more">
-                  <input class="ID read-more"  type="text" placeholder="ID" name="id2" [(ngModel)]="deleteCadreId" pattern="[0-9]*">
-                  <button class="BTN" type="button" (click)="deleteCadre(deleteCadreId)">Supprimer</button>
-                </form>
+          <div class="column2">
+              <div class="filter">
+                  <label for="filter">Filtrer par </label>
+                  <input type="text" [(ngModel)]="filterValue" placeholder="Filtrer par ID ou occupation" id="filter">
               </div>
-            </div>
-          <!--image card end-->
-          <!-- Filters-->
-
-            <div class="filter">
-                <label for="filter">Filter By :</label>
-                <input type="text" [(ngModel)]="filterValue" placeholder="Filter by ID or Class or State" id="filter">
-            </div>
-            <!-- Display Table-->
-
-      <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Prenom</th>
-                <th>Nom</th>
-                <th>Date de Naissance</th>
-                <th>N° CIN</th>
-                <th>Adresse</th>
-                <th>Num Telephone</th>
-                <th>Absence</th>
-                <th>Occupation</th>
-                <!--<th>Edit/Delete</th>-->
-            </tr>
-        </thead>
-        <tbody>
-                    <tr *ngFor="let cadre of cadres | cadreFilter: filterValue">
-                        <td>{{cadre.id}}</td>
-                        <td>{{cadre.nom}}</td>
-                        <td>{{cadre.prenom}}</td>
-                        <td>{{cadre.date_naiss}}</td>
-                        <td>{{cadre.cin}}</td>
-                        <td>{{cadre.adresse}}</td>
-                        <td>{{cadre.tel}}</td>
-                        <td>{{cadre.nb_absence}}</td>
-                        <td>{{cadre.occupation}}</td>
+              <!-- Display Table-->
+                <table border="1">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Prenom</th>
+                      <th>Nom</th>
+                      <th>Date de Naissance</th>
+                      <th>N° CIN</th>
+                      <th>Adresse</th>
+                      <th>Num Telephone</th>
+                      <th>Absence</th>
+                      <th>Occupation</th>
+                      <!--<th>Edit/Delete</th>-->
                     </tr>
-        </tbody>
-    </table>
-        </div>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let cadre of cadres | cadreFilter: filterValue">
+                          <td>{{cadre.id}}</td>
+                          <td>{{cadre.nom}}</td>
+                          <td>{{cadre.prenom}}</td>
+                          <td>{{cadre.date_naiss}}</td>
+                          <td>{{cadre.cin}}</td>
+                          <td>{{cadre.adresse}}</td>
+                          <td>{{cadre.tel}}</td>
+                          <td>{{cadre.nb_absence}}</td>
+                          <td>{{cadre.occupation}}</td>
+                      </tr>
+                  </tbody>
+              </table>
+            </div>
+          </div>
         </div>
 
         <div id="CreatecadreSection" class="container" *ngIf="createSectionVisible">
             <a href="/cadre#options_section" id="closePopupButton" class="fas fa-times close-btn"></a>
-            <div class="text">AJOUTER UN CADRE</div>
+            <div class="text">AJOUTER UN ADMINISTRATEUR</div>
             <form (ngSubmit)="onSubmit()" >
               <div class="credentials">
                 <div class="data">
@@ -136,7 +138,7 @@
          </div>
          <div id="ModifiercadreSection" class="container" *ngIf="showModifierSection">
             <a href="/cadre#options_section" id="closePopupButton" class="fas fa-times close-btn"></a>
-            <div class="text">MODIFIER UN CADRE</div>
+            <div class="text">MODIFIER UN ADMINISTRATEUR</div>
             <form action="#" (ngSubmit)="onSubmit2()">
               <div class="credentials">
                 <div class="data">
@@ -176,7 +178,7 @@
               </div>
               <div class="btn">
                 <div class="inner"></div>
-                <button type="submit">Ajouter</button>
+                <button type="submit">Modifier</button>
                 <button type="reset">Réinitialiser</button>
              </div>
             </form>

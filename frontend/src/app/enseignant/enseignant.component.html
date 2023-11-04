@@ -12,6 +12,7 @@
     <!--image card layout start-->
     <div id="options_section" class="container_page">
       <!--image row start-->
+      <div class="column1">
       <div class="row">
         <!--image card start-->
         <div class="image">
@@ -19,7 +20,7 @@
           <div class="details">
             <h2>Ajouter <br> un enseignant</h2>
             <div class="more">
-              <a href="/enseignant#CreateSection" class="read-more">Click to show form</a>
+              <a href="/enseignant#CreateSection" class="read-more">Afficher le formulaire</a>
             </div>
           </div>
         </div>
@@ -30,7 +31,7 @@
             <div class="details">
               <h2>Modifier le profil  <br> d'un enseignant</h2>
               <form class="more low_resolution_more">
-                <input class="ID read-more" type="text" placeholder="ID" pattern="[0-9]*" name="id" [(ngModel)]="enseignantId">
+                <input class="ID read-more" type="number" placeholder="ID" min="0" name="id" [(ngModel)]="enseignantId">
                 <a href="/enseignant#ModifierSection"><button class="BTN" type="button" (click)="retrieve()" >Modifier</button></a>
               </form>
             </div>
@@ -42,7 +43,7 @@
             <div class="details">
               <h2>Supprimer <br> un enseignant</h2>
               <form class="more low_resolution_more">
-                <input class="ID read-more"  type="text" placeholder="ID" name="id2" [(ngModel)]="deleteId" pattern="[0-9]*">
+                <input class="ID read-more"  type="number" placeholder="ID"  min="0" name="id2" [(ngModel)]="deleteId">
                 <button class="BTN" type="button" (click)="deleteEnseignant(deleteId)">Supprimer</button>
               </form>
             </div>
@@ -50,12 +51,13 @@
         <!--image card end-->
       </div>
       <!--image row end-->
-
+    </div>
+    <div class="column2">
       <!-- Filters-->
 
       <div class="filter">
-        <label for="filter">Filter By :</label>
-        <input type="text" [(ngModel)]="filterValue" placeholder="Filter by ID or Class or State" id="filter">
+        <label for="filter">Filtrer par </label>
+        <input type="text" [(ngModel)]="filterValue" placeholder="Filtrer par ID ou matière ou département" id="filter">
       </div>
       <!-- Display Table-->
 
@@ -94,6 +96,7 @@
                     </tr>
         </tbody>
     </table>
+    </div>
     </div>
     <!--image card layout end-->
 
@@ -195,7 +198,7 @@
       </div>
       <div class="btn">
         <div class="inner"></div>
-        <button type="submit">Ajouter</button>
+        <button type="submit">Modifier</button>
         <button type="reset">Réinitialiser</button>
      </div>
     </form>
