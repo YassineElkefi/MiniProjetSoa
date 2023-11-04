@@ -9,6 +9,7 @@ export class EnseignantService {
 
   private baseUrl = 'http://localhost:8081';
   constructor(private http:HttpClient) { }
+  
   getAllEnseignants() {
     return this.http.get(`${this.baseUrl}/Enseignant`);
   }

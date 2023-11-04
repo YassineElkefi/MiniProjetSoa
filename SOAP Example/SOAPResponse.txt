@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <tns:getEtudiantResponse xmlns="http://soa.com">
+      <tns:etudiant>
+        <tns:id>1</tns:id>
+        <tns:nom>BAHRI</tns:nom>
+        <tns:prenom>Hiba</tns:prenom>
+        <tns:date_naissance>09/09/2000</tns:date_naissance>
+        <tns:cin>14725836</tns:cin>
+        <tns:tel>28340957</tns:tel>
+        <tns:adresse>El yasminette</tns:adresse>
+        <tns:nb_absence>1</tns:nb_absence>
+        <tns:classe>dmwm-2-a</tns:classe>
+        <tns:estReussi>true</tns:estReussi>
+      </tns:etudiant>
+    </tns:getEtudiantResponse>
+  </soap:Body>
+</soap:Envelope>

@@ -16,6 +16,7 @@ export class EtudiantComponent implements OnInit {
   editedEtudiant:any = {};
   etudiantId: number;
   deleteEtudiantId:number; 
+  countReussi!:number;
   updatedEtudiant:any ={}; 
 
   constructor(private etudiantService: EtudiantService,private router: Router){
@@ -26,9 +27,15 @@ export class EtudiantComponent implements OnInit {
 ngOnInit(): void {
   this.etudiantService.getAllEtudiants().subscribe((result)=>{
     this.etudiants = result as any;
+    console.log(this.etudiants);
   })
 }
-
+getAllcount() {
+  return this.etudiants.length;
+}
+getEstReussiCount() {
+  return this.etudiants.filter(e => e.estReussi === true).length;
+}
 onSubmit(){ 
   this.etudiantService.addEtudiant(this.formData).subscribe((response)=>{
     console.log('Data sent successfully : ', response);

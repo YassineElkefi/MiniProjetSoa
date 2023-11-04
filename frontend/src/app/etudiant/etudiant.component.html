@@ -54,10 +54,19 @@
 
 <div class="column2">
         <!-- Filters-->
-  
-        <div class="filter">
-          <label for="filter">Filtrer par </label>
-          <input type="text" [(ngModel)]="filterValue" placeholder="Filtrer par ID ou Classe ou Réussi" id="filter">
+        <div class="tauxfilter"> 
+          <div class="filter">
+            <label for="filter">Filtrer par </label>
+            <input type="text" [(ngModel)]="filterValue" placeholder="ID ou Classe ou Réussi" id="filter">
+          </div>
+          <div class="filter">
+            <label>Etudiant(s) réussi(s) : {{ getEstReussiCount() }} </label>
+          </div>
+          <div class="filter">
+            <label for="filter">
+              <p>Taux de Réussite : {{ (getEstReussiCount()/getAllcount())*100 }}% </p>
+            </label>
+          </div>
         </div>
         <!-- Display Table-->
   
@@ -89,10 +98,6 @@
                           <td>{{etudiant.nb_absence}}</td>
                           <td>{{etudiant.classe}}</td>
                           <td>{{etudiant.estReussi}}</td>
-                          <!--<td>
-                              <button (click)="editenseignant(enseignant.id)">Edit</button>
-                              <button (click)="deleteenseignant(enseignant.id)" routerLink="/">Delete</button>
-                          </td>-->
                       </tr>
           </tbody>
       </table>
